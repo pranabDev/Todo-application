@@ -7,16 +7,29 @@ import AddTodo from "./AddTodo";
 
 const Todo_design = () => {
   const [todo, setTodo] = useState(Todos);
+  const [ediTable, setEdiTable] = useState(null);
 
-  const addTodo=(e)=>{
-      const result=[...todo,{...e,id:todo.length+1}];
-      setTodo(result);
-  }
+  const addTodo = (e) => {
+    const result = [...todo, { ...e, id: todo.length + 1 }];
+    setTodo(result);
+  };
 
-  const handleDelete=e=>{
-    const deleteTodo= todo.filter(t=>t.id !== e.id);
+  const handleDelete = (e) => {
+    const deleteTodo = todo.filter((t) => t.id !== e.id);
     setTodo(deleteTodo);
-  }
+  };
+
+  const edit = (value) => {
+    const Index = todo.findIndex((e) => e.id === ediTable.id);
+    let copyTodo = [...todo];
+    copyTodo.splice(Index, 1, value);
+    setTodo(copyTodo);
+  };
+
+  const editTodos = (e) => {
+    const result = todo.find((t) => t.id === e.id);
+    setEdiTable(result);
+  };
 
   return (
     <div className="max-w-xl mx-auto h-screen overflow-scroll px-8 py-10 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -28,7 +41,7 @@ const Todo_design = () => {
 
       {/* input feild or search bar */}
 
-      <AddTodo addTodo={addTodo}></AddTodo>
+      <AddTodo edit={edit} ediTable={ediTable} addTodo={addTodo}></AddTodo>
 
       {/* complete all task and delete all task */}
       <div className="flex justify-evenly items-center mt-5">
@@ -38,14 +51,19 @@ const Todo_design = () => {
 
       {/* todo list */}
       {todo.map((t) => (
-        <Todo handleDelete={handleDelete} key={t.id} todos={t}></Todo>
+        <Todo
+          editTodos={editTodos}
+          handleDelete={handleDelete}
+          key={t.id}
+          todos={t}
+        ></Todo>
       ))}
 
       {/* last  */}
       <div className="flex items-center  justify-between mt-5">
         <button className="btn btn-info">Filter</button>
         <h3>Completed:1</h3>
-        <h3 className="text-gray-500">Total Task:2</h3>
+        <h3 className="text-gray-500">Total Task: {todo.length}</h3>
       </div>
     </div>
   );

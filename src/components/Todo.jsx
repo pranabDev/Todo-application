@@ -2,8 +2,8 @@ import React from 'react';
 import editing from "../image/editing.png";
 import deleteimage from "../image/delete.png";
 
-const Todo = ({handleDelete,todos}) => {
-    const {id,todo}=todos;
+const Todo = ({handleDelete,editTodos,todos}) => {
+    const {todo}=todos;
     return (
         <div>
         <div className="flex justify-between items-center mt-10">
@@ -19,7 +19,7 @@ const Todo = ({handleDelete,todos}) => {
           </label>
         </span>
         <span className="flex">
-          <span><img className="w-5 h-5 cursor-pointer" src={editing} alt="" /></span>
+          <span onClick={()=>editTodos(todos)}><img className="w-5 h-5 cursor-pointer" src={editing} alt="" /></span>
           <span onClick={()=>handleDelete(todos)}>
           <img
             className="w-5 h-5 ml-5 cursor-pointer"
