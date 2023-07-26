@@ -1,51 +1,50 @@
 import React, { useEffect, useState } from "react";
 import image2 from "../image/checklist.png";
 
-const AddTodo = ({ edit, ediTable, addTodo }) => {
-  const [createTodo, setCreateTodo] = useState({});
+const AddTodo = ({ addTodo ,editable,EditTodo}) => {
+  const [value, setValue] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (ediTable) {
-      edit(createTodo);
-    } else {
-      addTodo(createTodo);
+    if(editable){
+      EditTodo(value)
+    }else{
+      addTodo(value);
     }
-    setCreateTodo({
-      todo: "",
-    });
+    e.target.reset();
   };
 
-  const handleData = (e) => {
-    setCreateTodo({ ...createTodo, [e.target.name]: e.target.value });
+  const handleValue = (e) => {
+    const result = { ...value, [e.target.name]: e.target.value };
+    setValue(result);
   };
 
-  useEffect(() => {
-    if (ediTable) {
-      setCreateTodo(ediTable);
-    }
-  }, [ediTable]);
+
+  useEffect(()=>{
+    setValue(editable)
+  },[editable])
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="search-box mx-auto mt-5 sm:w-full md:w-full lg:w-full xl:w-full">
         <div className="flex">
           <span className="flex items-center bg-gray-100 rounded rounded-r-none border-0 px-3 font-bold text-grey-100">
-            <img className="w-7 h-7" src={image2} alt="" />
+            <img className="w-5 h-5" src={image2} alt="" />
           </span>
           <input
-            className="h-16 bg-gray-100 text-grey-darker py-2 font-normal text-grey-darkest border border-gray-100 font-bold w-full py-1 px-2 outline-none text-lg text-gray-600"
+            className="h-14 bg-gray-100 text-grey-darker py-2 font-normal text-grey-darkest border border-gray-100 font-bold w-full py-1 px-2 outline-none text-lg text-gray-600"
             type="text"
-            value={createTodo.todo || ""}
             name="todo"
-            onChange={handleData}
             placeholder="Add your todo"
+            value={value?.todo || ""}
+            onChange={handleValue}
+           
           />
           <span className="flex items-center bg-gray-100 rounded rounded-l-none px-3 font-bold text-grey-100">
             <input
               type="submit"
-              className="px-6 py-2 btn font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-600 focus:ring-opacity-80"
-              value={ediTable ? "Edit" : "Add"}
+              className="px-6 py-1 btn font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-600 focus:ring-opacity-80"
+              value={editable? "EDIT" : "ADD"}
             />
           </span>
         </div>

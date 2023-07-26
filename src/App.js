@@ -1,7 +1,7 @@
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
-import TodoDesign from './components/Todo_design';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+import TodoDesign from "./components/Todo_design";
 
 function App() {
   return (
