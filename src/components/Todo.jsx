@@ -2,27 +2,18 @@ import React, { useState } from "react";
 import editing from "../image/editing.png";
 import deleteimage from "../image/delete.png";
 
-
-const Todo = ({ todos,DeleteTodo ,EditFindTodo,checkbox}) => {
+const Todo = ({ todos, DeleteTodo, EditFindTodo, checkbox }) => {
   const { id, todo } = todos;
-  const [check,setCheck] = useState(null);
-  const handleCheck=e=>{
-    setCheck(e.target.checked)
+  const [check, setCheck] = useState(false);
+  const handleCheck = (e) => {
+    setCheck(e.target.checked);
 
-    checkbox(e.target.value)
-  }
-  
+    checkbox(e.target.value);
+    
+  };
 
-
-
-  
-  
-  
   return (
     <div>
-      
-      
-      
       <div className="flex justify-between items-center mt-10">
         <span className="flex items-center">
           <span>
@@ -31,19 +22,20 @@ const Todo = ({ todos,DeleteTodo ,EditFindTodo,checkbox}) => {
               className="checkbox checkbox-info mt-1"
               type="checkbox"
               value={id}
+              checked={check}
               onChange={handleCheck}
             />
           </span>
           <label className="ml-2" htmlFor="">
-            {check ? <del className="text-red-500">{todo}</del>:<p>{todo}</p>}
+            {check ? <del className="text-red-500">{todo}</del> : <p>{todo}</p>}
           </label>
         </span>
 
         <span className="flex">
-          <span onClick={()=>EditFindTodo(todos)}>
+          <span onClick={() => EditFindTodo(todos)}>
             <img className="w-5 h-5 cursor-pointer" src={editing} alt="" />
           </span>
-          <span onClick={()=>DeleteTodo(todos)}>
+          <span onClick={() => DeleteTodo(todos)}>
             <img
               className="w-5 h-5 ml-5 cursor-pointer"
               src={deleteimage}
@@ -52,7 +44,6 @@ const Todo = ({ todos,DeleteTodo ,EditFindTodo,checkbox}) => {
           </span>
         </span>
       </div>
-
     </div>
   );
 };

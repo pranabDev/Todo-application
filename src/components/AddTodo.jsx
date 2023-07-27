@@ -11,7 +11,8 @@ const AddTodo = ({ addTodo ,editable,EditTodo}) => {
     }else{
       addTodo(value);
     }
-    e.target.reset();
+    const result = {todo:""};
+    setValue(result)
   };
 
   const handleValue = (e) => {

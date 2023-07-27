@@ -49,6 +49,11 @@ const Todo_design = () => {
       setTodo(result)
     }
 
+    const allTask=()=>{
+        console.log('value')
+    }
+
+
   return (
     <div className="max-w-xl mx-auto h-screen overflow-scroll px-8 py-10 bg-white rounded-lg shadow-md dark:bg-gray-800">
       <Header></Header>
@@ -57,7 +62,7 @@ const Todo_design = () => {
         editable={editable}
         EditTodo={EditTodo}
       ></AddTodo>
-      <DelCom handleAllDelete={handleAllDelete}></DelCom>
+      <DelCom handleAllDelete={handleAllDelete} allTask={allTask}></DelCom>
       {todo.map((t) => (
         <Todo
           key={t.id}
@@ -66,6 +71,7 @@ const Todo_design = () => {
           EditFindTodo={EditFindTodo}
           todoss={todo}
           checkbox={checkbox}
+          allTask={allTask}
         ></Todo>
       ))}
       <Filter result={result} todo={todo}></Filter>
