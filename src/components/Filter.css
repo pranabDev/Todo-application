@@ -1,0 +1,33 @@
+
+
+  
+  
+  
+  .cardnew p {
+    
+
+    text-align: center;
+    margin-top: 5px;
+    display: block;
+    opacity: 0;
+    transition: 0.2s linear;
+  }
+  
+  .cardnew:hover {
+    transform: scale(1.015);
+    transition: 0.15s linear;
+    
+  }
+  
+  .cardnew:hover p {
+    border-radius: 7px;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    opacity: 1;
+    transition: 0.2s linear;
+    cursor: pointer;
+    background-color: rgb(243, 238, 238);
+  }
+  
+ 

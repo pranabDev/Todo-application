@@ -7,9 +7,7 @@ const Todo = ({ todos, DeleteTodo, EditFindTodo, checkbox }) => {
   const [check, setCheck] = useState(false);
   const handleCheck = (e) => {
     setCheck(e.target.checked);
-
     checkbox(e.target.value);
-    
   };
 
   return (

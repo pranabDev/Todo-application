@@ -9,6 +9,7 @@ import todos from "../components/Todos";
 const Todo_design = () => {
   const [todo, setTodo] = useState(todos);
   const [editable, setEditable] = useState(null);
+
   const addTodo = (value) => {
     const result = [...todo, { id: todo.length + 1, ...value }];
     setTodo(result);
@@ -49,11 +50,23 @@ const Todo_design = () => {
       setTodo(result)
     }
 
-    const allTask=()=>{
-        console.log('value')
+    const allTask=(value)=>{
+        console.log(value.target)
     }
 
+    const handleAllTodo=()=>{
+      console.log("all")
+    }
 
+    const handleUncomplte=()=>{
+
+    }
+
+    const handleComplite=(value)=>{
+      const filter=todo.filter(fil=>fil.check !== value.check);
+      setTodo(filter)
+    }
+    
   return (
     <div className="max-w-xl mx-auto h-screen overflow-scroll px-8 py-10 bg-white rounded-lg shadow-md dark:bg-gray-800">
       <Header></Header>
@@ -71,10 +84,9 @@ const Todo_design = () => {
           EditFindTodo={EditFindTodo}
           todoss={todo}
           checkbox={checkbox}
-          allTask={allTask}
         ></Todo>
       ))}
-      <Filter result={result} todo={todo}></Filter>
+      <Filter handleComplite={handleComplite} handleUncomplte={handleUncomplte} handleAllTodo={handleAllTodo} result={result} todoLength={todo}></Filter>
     </div>
   );
 };
